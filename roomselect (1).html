@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html> {% block content %} <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+      .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+    <br />
+    <ul style="font-family:'Book Antiqua'">
+    <li>
+      <a href="#contact">
+        <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+    </li> {% if user.is_authenticated %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+      <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li> {% else %} {% endif %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="{% url 'home' %}">
+        <span class="glyphicon glyphicon-home"></span> Home </a>
+    </li>
+  </ul>
+    <div class="bg-img">
+      <form action="{% url 'checkout' %}" method="post">{% csrf_token %} <div class="row">
+          <div class="col-75" style="font-family:'Book Antiqua'">
+            <div class="container">
+              <div class="row">
+                <div class="col-50">
+                  <input type="hidden" id="checkin" name="checkin" value="{{ checkin_user }}">
+                  <input type="hidden" id="checkout" name="checkout" value="{{ checkout_user }}">
+                  <input type="hidden" id="uname" name="uname" value="{{ user.username }}">
+                  <label for="fname">
+                    <i class="fa fa-user"></i> Full Name </label>
+                  <input type="text" id="fname" name="fname" placeholder="My Name">
+                  <label for="email">
+                    <i class="fa fa-envelope"></i> Email </label>
+                  <input type="text" id="email" name="email" placeholder="myname@example.com">
+                  <h4 style="color:red">{{ email_valid }}</h4>
+                  <label for="adr">
+                    <i class="fa fa-address-card-o"></i> Address </label>
+                  <input type="text" id="address" name="address" placeholder="2182 Prescott Dr">
+                  <label for="city">
+                    <i class="fa fa-institution"></i> City </label>
+                  <input type="text" id="city" name="city" placeholder="New York">
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state" placeholder="NY">
+                    </div>
+                    <div class="col-50">
+                      <label for="zip">Zip</label>
+                      <input type="text" id="zip" name="zip" placeholder="10001">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-50">
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="nameoncard" name="nameoncard" placeholder="John More Doe">
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444">
+                  <h4 style="color:red">{{ cc_number_message }} {{ cc_issuer_message }}</h4>
+                  <label for="expmonth">Exp Month</label>
+                  <select name="expmonth" id="expmonth">
+                    <option value="January">Jan</option>
+                    <option value="Feburary">Feb</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                  </select>
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <select name="expyear" id="expyear">
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                      </select>
+                    </div>
+                    <div class="col-50">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" placeholder="352"> {{ cvv_type }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label>
+                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing </label>
+              <input type="submit" value="Continue to checkout" class="btn">
+            </div>
+          </div>
+          <div class="col-25" style="font-family:'Book Antiqua'">
+            <div class="container">
+              <h4>Cart <span class="price" style="color:black">
+                  <i class="fa fa-shopping-cart"></i>
+                </span>
+              </h4>
+              <input type="hidden" id="price" name="price" value="{{ myroomselect }}">
+              <input type="hidden" id="mealselect" name="mealselect" value="{{ meal_selection }}">
+              <input type="hidden" id="parkingselect" name="parkingselect" value="{{ parking_selection }}">
+              <input type="hidden" id="taxrate" name="taxrate" value="{{ tax_rate  }}">
+              <input type="hidden" id="total" name="total" value="{{ final_amount }}">
+              <input type="hidden" id="hotelname" name="hotelname" value="{{ hotel_name }}">
+              <p> Room Charges <span class="price">{{ myroomselect }} $</span>
+              </p>
+              <p>Meals <span class="price">{{ meal_selection }} $ </span>
+              </p>
+              <p>Parking <span class="price">{{ parking_selection }} $</span>
+              </p>
+              <p>Tax <span class="price">{{ tax_rate }} $</span>
+              </p>
+              <hr> ========================================= <p>Total <span class="price" style="color:black">
+                  <b>{{ final_amount }} $</b>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+  </body>
+</html> {% endblock %}

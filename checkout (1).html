@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html> {% block content %} <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <title>Search results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+      .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+  <br />
+  <ul>
+    <li>
+      <a href="#contact">
+        <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+    </li> {% if user.is_authenticated %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+      <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li> {% else %} {% endif %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="{% url 'home' %}">Home</a>
+    </li>
+  </ul>
+  <br />
+  <html lang="en">
+    <body>{{ cc_number_message }} {{ cc_issuer_message }}
+      <form action="{% url 'final' %}" method="post"> {% csrf_token %} <div class="container">
+          <div class="table-wrapper">
+            <table class="fl-table">
+              <tbody id="mybody"></tbody>
+              <thead>
+                <th>Person Details</th>
+                <th>Room Details</th>
+                <th>Extras</th>
+              </thead>
+              <tr>
+                <td style="width: 70px; text-align: left;height:300px">
+                  <div class="caps">
+                    <i class="fa fa-user"></i> {{ f_name }}
+                    <br />
+                    <br />
+                    <i class="fa fa-envelope"></i> {{ email_id }}
+                    <br />
+                    <br />
+                    <i class="fa fa-address-card-o"></i> {{ addr }}
+                    <br />
+                    <br />
+                    <i class="fa fa-institution"></i> {{ city }}, {{ state }}, {{ zip }}
+                  </div>
+                </td>
+                <td style="text-align: center">
+                  <div class="caps"> {{ hotelname }}</div>
+                  <br />
+                  <br /> {% if hotel_id == 1 or hotel_id  == 40 or hotel_id  == 28 %} <img src="{% static 'app/images/hotel1.jpg' %}" alt="image-1" /> {% elif hotel_id  == 2 or hotel_id  == 39 or hotel_id  == 27 %} <img src="{% static 'app/images/hotel_pics/hotel2.jpg' %}" alt="image-2" /> {% elif hotel_id  == 3 or hotel_id  == 38 or hotel_id  == 26 %} <img src="{% static 'app/images/hotel_pics/hotel3.jpg' %}" alt="image-3" /> {% elif hotel_id  == 4 or hotel_id  == 37 or hotel_id  == 25 %} <img src="{% static 'app/images/hotel_pics/hotel4.jpg' %}" alt="image-4" /> {% elif hotel_id  == 5 or hotel_id  == 36 or hotel_id  == 24 %} <img src="{% static 'app/images/hotel_pics/hotel5.jpg' %}" alt="image-5" /> {% elif hotel_id  == 6 or hotel_id  == 35 or hotel_id  == 23 %} <img src="{% static 'app/images/hotel_pics/hotel6.jpg' %}" alt="image-6" /> {% elif hotel_id  == 7 or hotel_id  == 34 or hotel_id  == 22 %} <img src="{% static 'app/images/hotel_pics/hotel7.jpg' %}" alt="image-7" /> {% elif hotel_id  == 8 or hotel_id  == 33 or hotel_id  == 21 %} <img src="{% static 'app/images/hotel_pics/hotel8.jpg' %}" alt="image-8" /> {% elif hotel_id  == 9 or hotel_id  == 32 or hotel_id  == 20 %} <img src="{% static 'app/images/hotel_pics/hotel9.jpg' %}" alt="image-9" /> {% elif hotel_id  == 10 or hotel_id  == 31 or hotel_id  == 19 %} <img src="{% static 'app/images/hotel_pics/hotel10.jpg' %}" alt="image-10" /> {% elif hotel_id  == 11 or hotel_id  == 30 or hotel_id  == 18 %} <img src="{% static 'app/images/hotel_pics/hotel11.jpg' %}" alt="image-11" /> {% elif hotel_id  == 12 or hotel_id  == 29 or hotel_id  == 17 %} <img src="{% static 'app/images/hotel_pics/hotel12.jpg' %}" alt="image-12" /> {% else %} <img src="{% static 'app/images/hotel_pics/hotel7.jpg' %}" alt="image-7" /> {% endif %}
+                </td>
+                <td style="width: 300px ;text-align: left"> Total Charges : {{ total }}
+                  <br />
+                  <br /> Meals Selected : {{ meal_select }}
+                  <br />
+                  <br /> Parking Selected : {{ parking_select }}
+                  <br />
+                  <br />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="hidden" id="uname" name="uname" value="{{ uname }}">
+                  <input type="hidden" id="room_price" name="room_price" value="{{ room_price }}">
+                  <input type="hidden" id="f_name" name="f_name" value="{{ f_name }}">
+                  <input type="hidden" id="email_id" name="email_id" value="{{ email_id }}">
+                  <input type="hidden" id="addr" name="addr" value="{{ addr }}">
+                  <input type="hidden" id="city" name="city" value="{{ city }}">
+                  <input type="hidden" id="state" name="state" value="{{ state }}">
+                  <input type="hidden" id="zip" name="zip" value="{{ zip }}">
+                  <input type="hidden" id="nameoncard" name="nameoncard" value="{{ nameoncard }}">
+                  <input type="hidden" id="cardnumber" name="cardnumber" value="{{ cardnumber }}">
+                  <input type="hidden" id="expmonth" name="expmonth" value="{{ expmonth }}">
+                  <input type="hidden" id="expyear" name="expyear" value="{{ expyear }}">
+                  <input type="hidden" id="cvv" name="cvv" value="{{ cvv }}">
+                  <input type="hidden" id="total" name="total" value="{{ total }}">
+                  <input type="hidden" id="meal_select" name="meal_select" value="{{ meal_select }}">
+                  <input type="hidden" id="parking_select" name="parking_select" value="{{ parking_select }}">
+                  <input type="hidden" id="hotelname" name="hotelname" value="{{ hotelname }}">
+                  <input type="hidden" id="tax_rate" name="tax_rate" value="{{ tax_rate }}">
+                  <input type="hidden" id="checkin" name="checkin" value="{{ checkin_user }}">
+                  <input type="hidden" id="checkout" name="checkout" value="{{ checkout_user }}">
+                  <button class="button" value="submit">Submit</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </form>
+      <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+      <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+      <br />
+      <br />
+      <br />
+      <br />
+    </body>
+  </html> {% endblock %}

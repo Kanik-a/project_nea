@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+  </head>
+  <body>
+    <div style="font-family:'Book Antiqua'">
+      <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+      <br />
+      <ul>
+        <li>
+          <a href="#contact">
+            <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+        </li>
+        <li>
+          <a href="{% url 'flightcall' %}">
+            <span class="glyphicon glyphicon-bed"></span>&nbsp;Flights </a>
+        </li>
+        <li style="float:right">
+          <a href="{% url 'signup' %}">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;Sign Up </a>
+        </li>
+        <!---this is the sign up-->
+        <li style="float:right">
+          <a href="{% url 'signin' %}">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;Login </a>
+        </li> {% if user.is_authenticated %} <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/mybookings">My Bookings</a>
+        </li> {% if user.username == 'pradeep' %} <li class="nav-item" style="float:right">
+          <a class="nav-link" href="/analytics">Site Analytics</a>
+        </li>{% else %}{% endif %} {% else %} {% endif %} <li class="nav-item" style="float:right">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+      </ul>
+      <div class="bg-img">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <form method="post" class="container"> {% csrf_token %} <label for="{{ form.username.id_for_label }}">
+            <h5 style="color:aliceblue">Username:</h5>
+          </label>&emsp;&emsp;&emsp; <input type="text" name="username" id="id_username">&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <label for="{{ form.password.id_for_label }}">
+            <h5 style="color:aliceblue">Password:</h5>
+          </label>&emsp;&emsp;&emsp; <input type="password" name="password" id="password">&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <br />
+        <br />
+      </div>
+      <br />
+      <br />
+      <br />
+      <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+      <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+      <br />
+      <img src="{% static 'app/images/ready.jpg' %}" width="1518" height="550" />
+      <div class="bg-img1"></div>
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+  </body>
+</html>

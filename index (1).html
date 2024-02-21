@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+  </head>
+  <body>
+    <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+    <br />
+    <ul style="font-family:'Book Antiqua'">
+      <li>
+        <a href="#contact">
+          <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+      </li>
+      <li>
+        <a href="{% url 'flightcall' %}">
+          <span class="glyphicon glyphicon-plane"></span>&nbsp;Flights </a>
+      </li> {% if user.is_authenticated %} <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mybookings">My Bookings</a>
+      </li> {% if user.username == 'pradeep' %} <li class="nav-item" style="float:right">
+        <a class="nav-link" href="/analytics">Site Analytics</a>
+      </li>{% else %}{% endif %} {% else %} <li style="float:right">
+        <a href="{% url 'signup' %}">
+          <span class="glyphicon glyphicon-user"></span>&nbsp;Sign Up </a>
+      </li>
+      <!---this is the sign up-->
+      <li style="float:right">
+        <a href="{% url 'signin' %}">
+          <span class="glyphicon glyphicon-user"></span>&nbsp;Login </a>
+      </li> {% endif %} <li class="nav-item" style="float:right">
+        <a class="nav-link" href="{% url 'home' %}">
+          <span class="glyphicon glyphicon-home"></span>&nbsp;Home </a>
+      </li>
+    </ul>
+    <div class="bg-img">
+      <br />
+      <br />
+      <br />
+      <br />
+      <form action="{% url 'hotel_options' %}" method="post" class="container"> {% csrf_token %} <p class="ex" style="font-family:'Book Antiqua'">&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; Where would you like to go?&emsp;&emsp;&emsp;&emsp;&emsp;Check In&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Check Out&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <br />
+        </p> &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp; <input type="text" id="location" name="location" required/>&emsp; <input type="date" id="checkin" name="checkin" required>&emsp; <input type="date" id="checkout" name="checkout" required>
+        <a class="btn" href="hotel_options">
+          <input class="button button3" type="submit" value="Search Hotels">
+        </a>
+      </form>
+      <br />
+      <br />
+    </div>
+    <br />
+    <br />
+    <br />
+    <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+    <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+    <br />
+    <br />
+    <br />
+    <div class="best">The best hotel deals.</div>
+    <br />
+    <br />
+    <img src="{% static 'app/images/ready.jpg' %}" width="1518" height="550" />
+    <div class="bg-img1"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+  </body>
+</html>

@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html> {% block content %} <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <title>Search results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+      .button {
+        background-color: darkslateblue;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+  <br />
+  <ul style="font-family:'Book Antiqua'">
+    <li>
+      <a href="#contact">
+        <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+    </li> {% if user.is_authenticated %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+      <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li> {% else %} {% endif %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="{% url 'home' %}">
+        <span class="glyphicon glyphicon-home"></span>&nbsp;Home </a>
+    </li>
+  </ul>
+  <br />
+  <html lang="en">
+    <body>
+      <div class="bg-img"> {% for y in myhotel %} <center></center>
+        <div class="container">
+          <div class="table-wrapper">
+            <center>
+              <h3 style="color:blueviolet;font-family:Stencil">{{ y.hotel_name }} in {{ y.city}}, {{ y.country}} </h3>
+            </center>
+            </br>
+            <table class="fl-table" style="font-family:'Book Antiqua'">
+              <tbody id="mybody"></tbody>
+              <thead>
+                <th>Room Gallery</th>
+                <th>Room Description</th>
+                <th>Amenities</th>
+                <th>Select</th>
+              </thead> {% for x in mydata_list %} <tr>
+                <td style="width:50px"> {% if x.classtype ==  'Deluxe Room' %} <img src="{% static 'app/images/room_pics/bed1.jpg' %}" alt="image-1" /> {% elif x.classtype ==  'Double Deluxe' %} <img src="{% static 'app/images/room_pics/bed2.jpg' %}" alt="image-1" /> {% elif x.classtype ==  'Executive Room' %} <img src="{% static 'app/images/room_pics/bed3.jpg' %}" alt="image-1" /> {% elif x.classtype ==  'Executive Suite' %} <img src="{% static 'app/images/room_pics/bed4.jpg' %}" alt="image-1" /> {% elif x.classtype ==  'Presidential Room' %} <img src="{% static 'app/images/room_pics/bed5.jpg' %}" alt="image-1" /> {% elif x.classtype ==  'Presidential Suite' %} <img src="{% static 'app/images/room_pics/bed6.jpg' %}" alt="image-1" /> {% elif x.classtype ==  'Superior Room' %} <img src="{% static 'app/images/room_pics/bed7.jpg' %}" alt="image-1" /> {% else %} <img src="{% static 'app/images/room_pics/bed8.jpg' %}" alt="image-1" /> {% endif %} </td>
+                <td style="text-align:left" width="250px">
+                  <b> Room Type :</b> {{ x.classtype }}
+                  <br />
+                  <br />
+                  <b>Sleeps :</b>
+                  {{ x.Sleeps }}
+                  <br />
+                  <br />
+                  <b>Bed Type :</b> {{ x.bedtype }}
+                  <br />
+                  <br />
+                  <b>SQFT : </b>{{ x.sqft }}
+                </td> {% for t in room_details %} {% if x.classtype == t.room_type %} <td style="text-align:left" width="30px">
+                  {{ t.amenities.amen_1 }}
+                  <br />
+                  <br />
+                  {{ t.amenities.amen_2 }}
+                  <br />
+                  <br />
+                  {{ t.amenities.amen_3 }}
+                  <br />
+                  <br />
+                  {{ t.amenities.amen_4 }}
+                  <br />
+                  <br />
+                  {{ t.amenities.amen_5 }}
+                </td>{% endif %} {% endfor %} {% for t in room_details %} {% if x.classtype == t.room_type %} <td width="30px">Room Charges <br />
+                  <br />
+                  {{ t.room_price }} $ <br />
+                  <br />
+                  <form action="{% url 'roomconfirmed' %}" method="post"> {% csrf_token %} <input type="hidden" id="hot_name" name="hot_name" value="{{ y.hotel_name }}">
+                    <input type="hidden" id="city_name" name="city_name" value="{{ y.city }}">
+                    <input type="hidden" id="roomsleep" name="roomsleep" value="{{ x.Sleeps }}">
+                    <input type="hidden" id="bedtype" name="bedtype" value="{{ x.bedtype }}">
+                    <input type="hidden" id="sqft" name="sqft" value="{{ x.sqft }}">
+                    <input type="hidden" id="roomclass" name="roomclass" value="{{ x.classtype }}">
+                    <input type="hidden" id="checkin" name="checkin" value="{{ checkin_user }}">
+                    <input type="hidden" id="checkout" name="checkout" value="{{ checkout_user }}">
+                    <button class="button" name="submit" type="submit">Select</button>
+                    <br />
+                  </form>
+                </td> {% endif %} {% endfor %}
+              </tr>{% endfor %}
+            </table>
+          </div>
+        </div> {% endfor %}
+      </div>
+      <br />
+      <br />
+      <br />
+      <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+      <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+      <br />
+      <br />
+      <br />
+      <br />
+      <img src="{% static 'app/images/ready.jpg' %}" width="1518" height="550" />
+      <br />
+      <br />
+      <br />
+      <br />
+      <img src="{% static 'app/images/fullsize1.jpg' %}" width="1518" height="550" />
+      <br />
+      <br />
+      <br />
+      <br />
+    </body>
+  </html> {% endblock %}

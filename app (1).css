@@ -1,0 +1,316 @@
+
+/*navbar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: darkblue;
+    position: -webkit-sticky; /* Safari */
+   
+    top: 0;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        li a:hover {
+            background-color:coral;
+        }
+
+.active {
+    background-color: dodgerblue;
+}
+
+/*logo image size*/
+.h1 {
+    font-family: cursive;
+    
+}
+
+text{
+    font-family:cursive;
+}
+
+
+input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+input[type=password] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+input[type=email] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+input[type=date] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: teal; 
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button3 {
+    border-radius: 8px;
+}
+.bg-img {
+    /* The image used */
+    background-image: url("../images/fullsize2.jpg");
+    min-height: 325px;
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+    
+    right: 200px;
+    margin: 20px;
+    
+    width:500px;
+    padding: 16px;
+    background-color:darkblue;
+}
+p.ex {
+    color: rgb(255,255,255);
+}
+.bg-img1 {
+    /* The image used */
+    background-image: url("../images/fullsize1.jpg");
+    min-height: 500px;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.footer {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 30px 30px 20px 30px;
+    color: #2f2f2f;
+    background-color: darkblue;
+    border-top: 1px solid #e5e5e5;
+}
+
+    .footer > * {
+        flex: 1 100%;
+    }
+
+.footer__addr {
+    margin-right: 1.25em;
+    margin-bottom: 2em;
+}
+
+.footer__logo {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: 3.5rem;
+    color:white
+}
+
+.footer__addr h2 {
+    margin-top: 1.3em;
+    font-size: 15px;
+    font-weight: 400;
+    color:white
+}
+
+.nav__title {
+   
+    color: white ;
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: 2.5rem;
+    color: white
+}
+
+.footer address {
+    font-style: normal;
+    color: white;
+}
+
+.footer__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    max-width: max-content;
+    background-color: dodgerblue;
+    border-radius: 100px;
+    color: white;
+    line-height: 0;
+    margin: 0.6em 0;
+    font-size: 1rem;
+    padding: 0 1.3em;
+}
+
+.footer uli {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer li {
+    line-height: 2em;
+   
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.footer__nav {
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+    .footer__nav > * {
+        flex: 1 50%;
+        margin-right: 1.25em;
+    }
+
+.nav__ul a {
+    color: white;
+}
+
+.nav__ul--extra {
+    column-count: 2;
+    column-gap: 1.25em;
+}
+
+.legal {
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.legal__links {
+    display: flex;
+    align-items: center;
+}
+
+
+
+@media screen and (min-width: 24.375em) {
+    .legal .legal__links {
+        margin-left: auto;
+    }
+}
+
+@media screen and (min-width: 40.375em) {
+    .footer__nav > * {
+        flex: 1;
+    }
+
+    .nav__item--extra {
+        flex-grow: 2;
+    }
+
+    .footer__addr {
+        flex: 1 0px;
+    }
+
+    .footer__nav {
+        flex: 2 0px;
+    }
+}
+
+.best {
+    color: white;
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    color: black;
+    text-align:center
+}
+
+.button-29 {
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+}
+
+    .button-29:focus {
+        box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    }
+
+    .button-29:hover {
+        box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+        transform: translateY(-2px);
+    }
+
+    .button-29:active {
+        box-shadow: #3c4fe0 0 3px 7px inset;
+        transform: translateY(2px);
+    }

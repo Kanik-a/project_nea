@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html> {% block content %} <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <title>Search results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+      .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+  <br />
+  <ul>
+    <li>
+      <a href="#contact">
+        <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+    </li> {% if user.is_authenticated %} <li class="nav-item" style="float:left">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+      <a class="nav-link" href="{% url 'home' %}">
+        <span class="glyphicon glyphicon-home"></span>&nbsp;Home </a>
+    </li>
+    <li class="nav-item" style="float:left">
+      <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li> {% else %} {% endif %}
+  </ul>
+  <br />
+  <html lang="en">
+    <body>
+      <div class="bg-img">
+        <div style="font-family:'Book Antiqua'">
+          <div class="container">
+            <div class="table-wrapper">
+              <center>
+                <h3 style="color:blueviolet;font-family:Stencil">Site Analytics </h3>
+              </center>
+              <center>
+                <form action="{% url 'callanalytics' %}" method="post"> {% csrf_token %} <button class="button" type="submit" name="find_room" value="find_room">Find Room Analytics</button>
+                  <button class="button" type="submit" name="find_room_price" value="find_room_price">Find Room Price Analytics</button>
+                  <button class="button" type="submit" name="user_booking" value="user_booking">Find User Booking</button>
+                  <button class="button" type="submit" name="user_register" value="user_register">Find User Registration</button>
+                  <button class="button" type="submit" name="user_login" value="user_login">Find User Login</button>
+                  <button class="button" type="submit" name="booking" value="booking">Monthwise Booking</button>
+                  <button class="button" type="submit" name="roomavailable" value="roomavailable">Available vs Booked</button>
+                  <button class="button" type="submit" name="hotelrevenue" value="hotelrevenue">Hotel Revenue</button>
+                </form>
+              </center>
+              </br>{% if new_dict %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>City</th>
+                    <th>Total Room</th>
+                  </tr>
+                </thead>
+                <tbody> {% for key, value in new_dict.items %} <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %} {% if roomprice_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>City</th>
+                    <th>Total Room Price</th>
+                  </tr>
+                </thead>
+                <tbody> {% for row in roomprice_analytics %} <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %} {% if booking_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>City</th>
+                    <th>Total Booking</th>
+                  </tr>
+                </thead>
+                <tbody> {% for row in booking_analytics %} <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %}{% if user_register_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>User Registered</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody> {% for row in user_register_analytics %} <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %} {% if user_login_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>User Login</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody> {% for row in user_login_analytics %} <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %}{% if user_booking_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>Booking Month</th>
+                    <th>Total Booking</th>
+                  </tr>
+                </thead>
+                <tbody> {% for row in user_booking_analytics %} <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %}{% if user_available_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>Hotel Name</th>
+                    <th>Total Rooms</th>
+                    <th>Rooms Available</th>
+                    <th>Rooms Booked</th>
+                  </tr>
+                </thead>
+                <tbody> {% for row in user_available_analytics %} <tr>
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>{{ row.3 }}</td>
+                    <td>{{ row.4 }}</td>
+                  </tr> {% endfor %} </tbody>
+              </table> {% endif %}{% if hotel_revenue_analytics %} <table class="fl-table">
+                <thead>
+                  <tr>
+                    <th>Hotel Name</th>
+                    <th>January</th>
+                    <th>February</th>
+                    <th>March</th>
+                    <th>April</th>
+                    <th>May</th>
+                    <th>June</th>
+                    <th>July</th>
+                    <th>August</th>
+                    <th>September</th>
+                    <th>October</th>
+                    <th>November</th>
+                    <th>December</th>
+                    <th>Total Revenue</th>
+                  </tr>
+                </thead>
+                <tbody>{% for row in hotel_revenue_analytics %} <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>{{ row.3 }}</td>
+                    <td>{{ row.4 }}</td>
+                    <td>{{ row.5 }}</td>
+                    <td>{{ row.6 }}</td>
+                    <td>{{ row.7 }}</td>
+                    <td>{{ row.8 }}</td>
+                    <td>{{ row.9 }}</td>
+                    <td>{{ row.10 }}</td>
+                    <td>{{ row.11 }}</td>
+                    <td>{{ row.12 }}</td>
+                    <td>{{ row.13 }}</td>
+                  </tr>{% endfor %} </tbody>
+              </table> {% endif %}
+            </div>
+          </div>
+          <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+          <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
+      </div>
+    </body>
+  </html> {% endblock %}

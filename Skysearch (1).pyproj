@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>Skysearch</Name>
+    <RootNamespace>Skysearch</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>e5cbf5e1-8fcc-49f5-9084-fdcef98a2bf8</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <WebBrowserUrl>http://globetrotter</WebBrowserUrl>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>Skysearch.settings</DjangoSettingsModule>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app\forms.py" />
+    <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="app\models.py" />
+    <Compile Include="app\tests.py" />
+    <Compile Include="app\views.py" />
+    <Compile Include="app\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Skysearch\__init__.py" />
+    <Compile Include="Skysearch\settings.py" />
+    <Compile Include="Skysearch\urls.py" />
+    <Compile Include="Skysearch\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\migrations\" />
+    <Folder Include="app\static\" />
+    <Folder Include="app\static\app\" />
+    <Folder Include="app\static\app\content\" />
+    <Folder Include="app\static\app\fonts\" />
+    <Folder Include="app\static\app\images\" />
+    <Folder Include="app\static\app\images\hotel_pics\" />
+    <Folder Include="app\static\app\images\room_pics\" />
+    <Folder Include="app\static\app\scripts\" />
+    <Folder Include="app\templates\" />
+    <Folder Include="app\templates\app\" />
+    <Folder Include="Skysearch\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\static\app\content\.editorconfig" />
+    <Content Include="app\static\app\content\app.css" />
+    <Content Include="app\static\app\content\hotel_images.css" />
+    <Content Include="app\static\app\images\all.jpg" />
+    <Content Include="app\static\app\images\banner.jpg" />
+    <Content Include="app\static\app\images\banner1.jpg" />
+    <Content Include="app\static\app\images\banner2.jpg" />
+    <Content Include="app\static\app\images\banner4.jpg" />
+    <Content Include="app\static\app\images\fullsize.jpg" />
+    <Content Include="app\static\app\images\fullsize1.jpg" />
+    <Content Include="app\static\app\images\fullsize2.jpg" />
+    <Content Include="app\static\app\images\Globe.jpg" />
+    <Content Include="app\static\app\images\globe1.jpg" />
+    <Content Include="app\static\app\images\grabsurf.jpg" />
+    <Content Include="app\static\app\images\hill.jpg" />
+    <Content Include="app\static\app\images\hill1.jpg" />
+    <Content Include="app\static\app\images\hotel1.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel2.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel3.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel1.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel4.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel5.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel6.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel7.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel8.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel9.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel10.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel11.jpg" />
+    <Content Include="app\static\app\images\hotel_pics\hotel12.jpg" />
+    <Content Include="app\static\app\images\iescape.jpg" />
+    <Content Include="app\static\app\images\letsfly.jpg" />
+    <Content Include="app\static\app\images\letsfly1.jpg" />
+    <Content Include="app\static\app\images\logo.jpg" />
+    <Content Include="app\static\app\images\logo1.jpg" />
+    <Content Include="app\static\app\images\logo2.jpg" />
+    <Content Include="app\static\app\images\pana1.jpg" />
+    <Content Include="app\static\app\images\pana2.jpg" />
+    <Content Include="app\static\app\images\pana3.jpg" />
+    <Content Include="app\static\app\images\pana4.jpg" />
+    <Content Include="app\static\app\images\pana5.jpg" />
+    <Content Include="app\static\app\images\ready.jpg" />
+    <Content Include="app\static\app\images\road.jpg" />
+    <Content Include="app\static\app\images\road1.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed1.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed10.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed11.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed12.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed13.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed14.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed15.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed16.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed17.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed18.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed19.jpg" />
+    <Content Include="app\static\app\images\room_pics\Bed2.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed20.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed21.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed22.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed23.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed24.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed25.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed26.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed27.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed28.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed29.jpg" />
+    <Content Include="app\static\app\images\room_pics\BEd3.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed30.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed31.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed32.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed33.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed34.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed35.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed36.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed37.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed38.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed39.jpg" />
+    <Content Include="app\static\app\images\room_pics\BEd4.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed40.jpg" />
+    <Content Include="app\static\app\images\room_pics\Bed5.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed6.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed7.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed8.jpg" />
+    <Content Include="app\static\app\images\room_pics\bed9.jpg" />
+    <Content Include="app\static\app\images\room_pics\sleep.jpg" />
+    <Content Include="app\static\app\images\room_pics\sleep1.jpg" />
+    <Content Include="app\static\app\images\Skysearch.jpg" />
+    <Content Include="app\static\app\images\surfing.jpg" />
+    <Content Include="app\static\app\images\travel.jpg" />
+    <Content Include="app\static\app\images\travelthumb.jpg" />
+    <Content Include="app\static\app\images\traveltimeline.jpg" />
+    <Content Include="app\templates\app\hotel_options.html" />
+    <Content Include="app\templates\app\room.html" />
+    <Content Include="app\templates\app\roomselect.html" />
+    <Content Include="app\templates\app\roomconfirmed.html" />
+    <Content Include="app\templates\app\checkout.html" />
+    <Content Include="app\templates\app\final.html" />
+    <Content Include="app\templates\app\test.html" />
+    <Content Include="app\templates\app\analytics.html" />
+    <Content Include="app\templates\app\mybookings.html" />
+    <Content Include="app\templates\app\cancel.html" />
+    <Content Include="app\templates\app\flight.html" />
+    <Content Include="app\templates\app\flightdetails.html" />
+    <Content Include="app\templates\app\flightbooking.html" />
+    <Content Include="app\templates\app\flightfinal.html" />
+    <Content Include="requirements.txt" />
+    <Content Include="db.sqlite3" />
+    <Content Include="app\static\app\content\bootstrap.css" />
+    <Content Include="app\static\app\content\bootstrap.min.css" />
+    <Content Include="app\static\app\content\site.css" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\static\app\scripts\bootstrap.js" />
+    <Content Include="app\static\app\scripts\bootstrap.min.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.min.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.min.map" />
+    <Content Include="app\static\app\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.min.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="app\static\app\scripts\modernizr-2.6.2.js" />
+    <Content Include="app\static\app\scripts\respond.js" />
+    <Content Include="app\static\app\scripts\respond.min.js" />
+    <Content Include="app\static\app\scripts\_references.js" />
+    <Content Include="app\templates\app\about.html" />
+    <Content Include="app\templates\app\contact.html" />
+    <Content Include="app\templates\app\index.html" />
+    <Content Include="app\templates\app\layout.html" />
+    <Content Include="app\templates\app\login.html" />
+    <Content Include="app\templates\app\signup.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.html">
+      <SubType>WebBrowser</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

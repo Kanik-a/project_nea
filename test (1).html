@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+{% block content %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $('input').on('change', function () {
+            $('body').toggleClass('blue');
+        });</script>
+    <title>Search results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<img src="{% static 'app/images/logo2.jpg' %} " width="300" height="80" />
+<ul>
+    <li><a href="#contact"><span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels</a></li>
+
+
+
+    {% if user.is_authenticated %}
+
+    <li class="nav-item" style="float:right">
+        <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li>
+
+    {% else %}
+
+
+
+    {% endif %}
+
+</ul>
+<br />
+
+
+<html lang="en">
+
+
+
+<body>
+    {{ df1 }} {{ arr }} {{ arr1 }}
+    <form action="{% url 'otherfunc' %}" method="post">
+        {% csrf_token %}
+
+        <input type="hidden" id="roomsleep" name="roomsleep" value="{{ df1 }}">
+        <input class="button button3" type="submit">
+    </form>
+    <div class="container">
+
+
+
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+                <th>Photo</th>
+                <th>Hotel Details</th>
+                <th>
+                    <label for="sorting">Sort By:</label>
+                    <select name="sorting" id="sorting">
+                        <option value="rating">Guest Rating</option>
+                        <option value="price">Price</option>
+                    </select>
+                </th>
+
+
+
+                </thead>
+                {% for x in mymembers %}
+                <tr>
+                    <td style="width:50px">
+                        {% if x.hotel_id == 1 or x.hotel_id  == 40 or x.hotel_id  == 28 %} <img src="{% static 'app/images/hotel1.jpg' %}" alt="image-1" />
+                        {% elif x.hotel_id  == 2 or x.hotel_id  == 39 or x.hotel_id  == 27 %} <img src="{% static 'app/images/hotel_pics/hotel2.jpg' %}" alt="image-2" />
+                        {% elif x.hotel_id  == 3 or x.hotel_id  == 38 or x.hotel_id  == 26 %} <img src="{% static 'app/images/hotel_pics/hotel3.jpg' %}" alt="image-3" />
+                        {% elif x.hotel_id  == 4 or x.hotel_id  == 37 or x.hotel_id  == 25 %} <img src="{% static 'app/images/hotel_pics/hotel4.jpg' %}" alt="image-4" />
+                        {% elif x.hotel_id  == 5 or x.hotel_id  == 36 or x.hotel_id  == 24 %} <img src="{% static 'app/images/hotel_pics/hotel5.jpg' %}" alt="image-5" />
+                        {% elif x.hotel_id  == 6 or x.hotel_id  == 35 or x.hotel_id  == 23 %} <img src="{% static 'app/images/hotel_pics/hotel6.jpg' %}" alt="image-6" />
+                        {% elif x.hotel_id  == 7 or x.hotel_id  == 34 or x.hotel_id  == 22 %} <img src="{% static 'app/images/hotel_pics/hotel7.jpg' %}" alt="image-7" />
+                        {% elif x.hotel_id  == 8 or x.hotel_id  == 33 or x.hotel_id  == 21 %} <img src="{% static 'app/images/hotel_pics/hotel8.jpg' %}" alt="image-8" />
+                        {% elif x.hotel_id  == 9 or x.hotel_id  == 32 or x.hotel_id  == 20 %} <img src="{% static 'app/images/hotel_pics/hotel9.jpg' %}" alt="image-9" />
+                        {% elif x.hotel_id  == 10 or x.hotel_id  == 31 or x.hotel_id  == 19 %} <img src="{% static 'app/images/hotel_pics/hotel10.jpg' %}" alt="image-10" />
+                        {% elif x.hotel_id  == 11 or x.hotel_id  == 30 or x.hotel_id  == 18 %} <img src="{% static 'app/images/hotel_pics/hotel11.jpg' %}" alt="image-11" />
+                        {% elif x.hotel_id  == 12 or x.hotel_id  == 29 or x.hotel_id  == 17 %} <img src="{% static 'app/images/hotel_pics/hotel12.jpg' %}" alt="image-12" />
+                        {% else %} <img src="{% static 'app/images/hotel_pics/hotel7.jpg' %}" alt="image-7" />
+                        {% endif %}
+                    </td>
+                    <td style="text-align:left">
+                        <h3>{{ x.hotel_name }}</h3><br /><h5>{{ x.city }},  {{ x.country }}</h5>
+                        <form action="{% url 'room' %}" method="post">
+                            {% csrf_token %}
+                            <button class="button" name="roomd" value="{{ x.hotel_id }}" type="submit">Select Hotel</button>
+                        </form>
+                        <br />
+                    <td style="text-align:left">
+                        <h3>Avg. Price : ${{ x.price}}</h3><br />Guest Rating : {{ x.guest_rating }}, {{ hash_n }}
+                    </td>
+
+
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}

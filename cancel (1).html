@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+  </head>
+  <body>
+    <form action="{% url 'mybookings' %}" method="post"> {% csrf_token %} <img src="{% static 'app/images/logo2.jpg' %} " width="300" height="80" />
+      <ul style="font-family:'Book Antiqua'">
+        <li>
+          <a href="#contact">
+            <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+        </li>
+        <li style="float:right">
+          <a href="{% url 'signup' %}">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;Sign Up </a>
+        </li>
+        <!---this is the sign up-->
+        <li style="float:right">
+          <a href="{% url 'signin' %}">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;Login </a>
+        </li>
+        <li class="nav-item" style="float:right">
+          <a class="nav-link" href="/analytics">Site Analytics</a>
+        </li>
+        <li class="nav-item" style="float:right">
+          <a class="nav-link" href="{% url 'home' %}">
+            <span class="glyphicon glyphicon-home"></span>&nbsp;Home </a>
+        </li> {% if user.is_authenticated %} <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Bookings</a>
+        </li> {% else %} {% endif %}
+      </ul>
+      <div class="bg-img">
+        <br />
+        <div class="container">
+          <div class="table-wrapper">
+            <table class="fl-table">
+              <thead>
+                <th>Booking Id </th> > <tr>
+                  <td style="text-align:center">
+                    <h3>
+                      <i>Booking Id : {{ new_book_id }} is cancelled </br>
+                       
+                      </i>
+                    </h3>
+                  </td>
+                </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

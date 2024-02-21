@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <style>
+      .button {
+        background-color: darkslateblue;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="{% url 'cancel' %}" method="post"> {% csrf_token %} <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+      <br />
+      <ul style="font-family:'Book Antiqua'">
+        <li>
+          <a href="#contact">
+            <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+        </li>
+        <li class="nav-item" style="float:right">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li> {% if user.is_authenticated %} <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Bookings</a>
+        </li> {% if user.username == 'pradeep' %} <li class="nav-item" style="float:right">
+          <a class="nav-link" href="/analytics">Site Analytics</a>
+        </li>{% else %}{% endif %} {% else %} {% endif %}
+      </ul>
+      <div class="bg-img">
+        <br />
+        <div class="container">
+          <div class="table-wrapper">
+            <table class="fl-table" style="font-family:'Book Antiqua'">
+              <center>
+                <b>
+                  <h3 style="font-family:Stencil">Hotel Booking Details</h3>
+                </b>
+              </center>
+              <thead>
+                <th>Booking Id </th>
+                <th>Booked For</th>
+                <th>Meals</th>
+                <th>Parking</th>
+                <th>Total Charge</th>
+                <th>Hotel Name</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+                <th>Modify Booking</th>
+                <tr>{% for booking in booking_data %} <td style="width:50px">
+                    <input type="hidden" id="booking_id" name="booking_id" value="{{ booking.booking_id }}">Booking Id : {{ booking.booking_id }}
+                  </td>
+                  <td style="text-align:left">
+                    {{ booking.full_name }}
+                  <td>USD {{ booking.meal }}</td>
+                  <td>USD {{ booking.parking }}</td>
+                  <td>USD {{ booking.total_charge }}</td>
+                  <td>{{ booking.hotel_name }}</td>
+                  <td>{{ booking.checkin_date }}</td>
+                  <td>{{ booking.checkout_date }}
+                  </td>
+                  <td style="text-align:center">
+                    <button class="button" name="cancel" type="submit" value="{{ booking.booking_id }}">Cancel Booking</button> {{ new_book_id }}
+                  </td>
+                </tr> {% endfor %}
+            </table>
+          </div>
+        </div>
+        <div class="container">
+          <div class="table-wrapper">
+            <table class="fl-table" style="font-family:'Book Antiqua'">
+              <center>
+                <b>
+                  <h3 style="font-family:Stencil">Flight Booking Details</h3>
+                </b>
+              </center>
+              <thead>
+                <th>Booking Id </th>
+                <th>Booked For</th>
+                <th>Airline</th>
+                <th>Destination City</th>
+                <th>Arrival City</th>
+                <th>Departure Date</th>
+                <th>Arrival Date</th>
+                <th>Flight Price</th>
+                <th>Modify Booking</th>
+                <tr>{% for booking in flight_booking_data %} <td style="width:50px">
+                    <input type="hidden" id="booking_id" name="booking_id" value="{{ booking.booking_id }}">Flight Booking Id : {{ booking.booking_id }}
+                  </td>
+                  <td style="text-align:left">{{ booking.full_name }} </td>
+                  <td> {{ booking.airline }} </td>
+                  <td>{{ booking.destcity }}</td>
+                  <td>{{ booking.arrivalcity }}</td>
+                  <td>{{ booking.destdate }}</td>
+                  <td>{{ booking.arrivaldate }}</td>
+                  <td>USD {{ booking.flightprice }}
+                  </td>
+                  <td style="text-align:center">
+                    <button class="button" name="cancelflight" type="submit" value="{{ booking.booking_id }}">Cancel Booking</button> {{ new_book_id }}
+                  </td>
+                </tr> {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="bg-img1"></div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html> {% block content %} <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <title>Search results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+      .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+  <br />
+  <ul>
+    <li>
+      <a href="#contact">
+        <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+    </li> {% if user.is_authenticated %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+      <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li> {% else %} {% endif %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="{% url 'home' %}">Home</a>
+    </li>
+  </ul>
+  <br />
+  <html lang="en">
+    <body>
+      <div class="container">
+        <div class="table-wrapper">
+          <table class="fl-table">
+            <tbody id="mybody"></tbody>
+            <thead>
+              <th>Booking Confirmed</th>
+              <tr>
+                <td style="width: 70px; text-align: center;height:300px">
+                  <div class="caps">
+                    <h3>Congratulation !! Your FLIGHT is booked .... <br />
+                      <br /> Booking Id : {{ insert_bookingdetails_id }}
+                    </h3>
+                    {{ result }}, {{ cardnumber }}
+                  </div>
+                </td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+      <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+      <br />
+      <br />
+      <br />
+      <br />
+    </body>
+  </html> {% endblock %}

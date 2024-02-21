@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <style>
+      .button {
+        background-color: darkslateblue;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+    <br />
+    <ul>
+      <li>
+        <a href="#contact">
+          <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+      </li>
+      <li>
+        <a href="{% url 'flightcall' %}">
+          <span class="glyphicon glyphicon-plane"></span>&nbsp;Flights </a>
+      </li> {% if user.is_authenticated %} <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/mybookings">My Bookings</a>
+      </li> {% if user.username == 'pradeep' %} <li class="nav-item" style="float:right">
+        <a class="nav-link" href="/analytics">Site Analytics</a>
+      </li>{% else %}{% endif %} {% else %} {% endif %} <li class="nav-item" style="float:right">
+        <a class="nav-link" href="{% url 'home' %}">
+          <span class="glyphicon glyphicon-home"></span> Home </a>
+      </li>
+    </ul>
+    <div class="bg-img">
+      <br />
+      <br />
+      <br />
+      <br />
+      <div class="container">
+        <div class="table-wrapper">{% if data %} <table class="fl-table">
+            <thead>
+              <th>Flight Number</th>
+              <th>Airline</th>
+              <th>Departure City</th>
+              <th>Arrival City</th>
+              <th>Departure Date</th>
+              <th>Arrival Date</th>
+              <th>Price</th>
+              <th>Select</th> {% for flight in data %} <tr>
+                <td style="text-align:left">Flight {{ flight.flight_number }}</td>
+                <td style="text-align:left">{{ flight.airline }} </td>
+                <td style="text-align:center">{{ flight.depart_city }}</td>
+                <td style="text-align:center"> {{ flight.arrival_city }}</td>
+                <td style="text-align:center">{{ flight.depart_time }}</td>
+                <td style="text-align:center"> {{ flight.arrival_time }}</td>
+                <td style="text-align:center"> {{ flight.price }} USD</td>
+                <td>
+                  <form method="post" action="{% url 'flightbookingdetails' %}">{% csrf_token %} <input type="hidden" id="airline" name="airline" value="{{ flight.airline }}">
+                    <input type="hidden" id="u_name" name="u_name" value="{{user.username}}">
+                    <input type="hidden" id="flightnumber" name="flightnumber" value="{{ flight.flight_number }}">
+                    <input type="hidden" id="departcity" name="departcity" value="{{ flight.depart_city }}">
+                    <input type="hidden" id="arrivalcity" name="arrivalcity" value="{{ flight.arrival_city }}">
+                    <input type="hidden" id="departtime" name="departtime" value="{{ flight.depart_time }}">
+                    <input type="hidden" id="arrivaltime" name="arrivaltime" value="{{ flight.depart_time }}">
+                    <input type="hidden" id="price" name="price" value="{{ flight.price }}">
+                    <button class="button" name="submit" type="submit">Select</button>
+                  </form>
+                </td>
+              </tr> {% endfor %}
+          </table> {% else %} <p>No flight data available.</p> {% endif %} </div>
+      </div>
+      <br />
+      <br />
+    </div>
+    <br />
+    <br />
+    <br />
+    <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+    <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+    <br />
+    <br />
+    <br />
+    <div class="best">The best hotel deals.</div>
+    <br />
+    <br />
+    <img src="{% static 'app/images/ready.jpg' %}" width="1518" height="550" />
+    <div class="bg-img1"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+  </body>
+</html>

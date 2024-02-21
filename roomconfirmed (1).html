@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html> {% block content %} <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Enjoy Destination</title> {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/app.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript">
+      $('input').on('change', function() {
+        $('body').toggleClass('blue');
+      });
+    </script>
+    <title>Search results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/hotel_images.css' %}" />
+    <style>
+      .button {
+        background-color: darkslateblue;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <img src="{% static 'app/images/banner4.jpg' %} " width="710" height="60" />
+  <br />
+  <ul style="font-family:'Book Antiqua'">
+    <li>
+      <a href="#contact">
+        <span class="glyphicon glyphicon-bed"></span>&nbsp;Pick the best hotels </a>
+    </li> {% if user.is_authenticated %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    <li class="nav-item" style="float:right">
+      <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+    </li> {% else %} {% endif %} <li class="nav-item" style="float:right">
+      <a class="nav-link" href="{% url 'home' %}">
+        <span class="glyphicon glyphicon-home"></span> Home </a>
+    </li>
+  </ul>
+  <br />
+  <html lang="en">
+    <body>
+      <div class="bg-img">
+        <div class="container">
+          <div class="table-wrapper">
+            <table class="fl-table" style="font-family:'Book Antiqua'">
+              <center>
+                <h3 style="color:blueviolet;font-family:Stencil">Room details</h3>
+              </center>
+              <tbody id="mybody"></tbody>
+              <thead>
+                <th>Room Galary</th>
+                <th>Room Details</th>
+                <th>Extras</th>
+              </thead>
+              <tr>
+                <td style="width: 70px; text-align: left;height:300px"> {% if class_id_name ==  'Deluxe Room' %} <img src="{% static 'app/images/room_pics/bed1.jpg' %}" alt="image-1" /> {% elif class_id_name ==  'Double Deluxe' %} <img src="{% static 'app/images/room_pics/bed2.jpg' %}" alt="image-1" /> {% elif class_id_name ==  'Executive Room' %} <img src="{% static 'app/images/room_pics/bed3.jpg' %}" alt="image-1" /> {% elif class_id_name ==  'Executive Suite' %} <img src="{% static 'app/images/room_pics/bed4.jpg' %}" alt="image-1" /> {% elif class_id_name ==  'Presidential Room' %} <img src="{% static 'app/images/room_pics/bed5.jpg' %}" alt="image-1" /> {% elif class_id_name ==  'Presidential Suite' %} <img src="{% static 'app/images/room_pics/bed6.jpg' %}" alt="image-1" /> {% elif class_id_name ==  'Superior Room' %} <img src="{% static 'app/images/room_pics/bed7.jpg' %}" alt="image-1" /> {% else %} <img src="{% static 'app/images/room_pics/bed8.jpg' %}" alt="image-1" /> {% endif %} </td>
+                <td style="text-align: left">
+                  <h6> Hotel :{{ hotel_id_name }}
+                    <br />
+                    <br /> City : {{ city_id_name }}
+                    <br />
+                    <br /> Room Type: {{ class_id_name }}
+                    <br />
+                    <br /> Sleeps : {{ sleep_id_name }}
+                    <br />
+                    <br /> Bed Size : {{ bedtype_id_name }}
+                    <br />
+                    <br /> SQFT : {{ sqft_id_name }}
+                    <br />
+                    <br /> Check In : {{ checkin_user }}
+                    <br />
+                    <br /> Check Out : {{ checkout_user }}
+                  </h6>
+                </td>
+                <td style="width:300px">
+                  <form action="{% url 'roomselect' %}" method="post"> {% csrf_token %} <input type="hidden" id="hot_name" name="hot_name" value="{{ hotel_id_name }}">
+                    <input type="hidden" id="city_name" name="city_name" value="{{ city_id_name }}">
+                    <input type="hidden" id="roomsleep" name="roomsleep" value="{{ sleep_id_name }}">
+                    <input type="hidden" id="bedtype" name="bedtype" value="{{ bedtype_id_name }}">
+                    <input type="hidden" id="sqft" name="sqft" value="{{ sqft_id_name }}">
+                    <input type="hidden" id="roomclass" name="roomclass" value="{{ class_id_name }}">
+                    <input type="hidden" id="checkin" name="checkin" value="{{ checkin_user }}">
+                    <input type="hidden" id="checkout" name="checkout" value="{{ checkout_user }}">
+                    <label for="extras">Meals:</label>
+                    <select id="meals" name="meals">
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label for="extras">Parking:</label>
+                    <select id="parking" name="parking">
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <button class="button" name="submit" type="submit">Select</button>
+                    <br />
+                  </form>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <img src="{% static 'app/images/letsfly.jpg' %}" width="715" height="450" />
+      <img src="{% static 'app/images/letsfly1.jpg' %}" style="float:right" />
+      <br />
+      <br />
+      <br />
+      <br />
+    </body>
+  </html> {% endblock %}
